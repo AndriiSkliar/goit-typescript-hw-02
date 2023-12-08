@@ -1,9 +1,8 @@
 /*
   Ви маєте форму реєстрації користувачів. 
   Іноді потрібно попередньо заповнити форму даними користувача для оновлення його профілю. 
-  Однак вам не завжди потрібно заповнити всі поля. Наприклад, користувач може хотіти оновити лише свій email та пароль, 
-  залишивши ім'я та прізвище без змін.
-
+  Однак вам не завжди потрібно заповнити всі поля. Наприклад, користувач може хотіти оновити 
+  лише свій email та пароль, залишивши ім'я та прізвище без змін.
   Виправте тип у аргументі функції так, щоб не було помилок типу.
 */
 
@@ -14,8 +13,15 @@ type User = {
   password: string;
 }
 
-function createOrUpdateUser(initialValues: User) {
-  // Оновлення користувача
+function createOrUpdateUser(userData: Partial<User>): User {
+  const defaultUser: User = {
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+  };
+
+  return { ...defaultUser, ...userData };
 }
 
 createOrUpdateUser({ email: 'user@mail.com', password: 'password123' });
